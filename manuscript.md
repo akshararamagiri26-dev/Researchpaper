@@ -2,9 +2,9 @@
 
 **Article type:** Short communication (working draft; empirical validation required)
 
-**Author:** [Author name]  
-**Affiliation:** [Department, institution, full postal address, country]  
-**Corresponding author:** [Name and institutional email]
+**Author:** Akshara Ramagiri  
+**Affiliation:** Midwest University  
+**Corresponding author:** Akshara Ramagiri (akshara.ramagiri@midwest.edu)
 
 ## Abstract
 
@@ -87,15 +87,15 @@ The source code and synthetic-data generator are available at https://github.com
 
 ## Funding
 
-This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors. **Confirm or revise this statement to match the actual funding situation.**
+This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
 
 ## Declaration of competing interests
 
-The author declares no known competing financial interests or personal relationships that could have appeared to influence the work. **Confirm this statement before submission.**
+The author declares no known competing financial interests or personal relationships that could have appeared to influence the work.
 
 ## Declaration of generative AI and AI-assisted technologies in the manuscript preparation process
 
-During the preparation of this work, the author used ChatGPT to assist with drafting and software prototyping. The author must review and edit the material, verify the analysis and references, and take full responsibility for the content of any submitted manuscript. **Revise this disclosure to reflect the actual tools and uses before submission.**
+During the preparation of this manuscript, the author used ChatGPT to assist with drafting and software prototyping. The author reviewed and edited the material and takes full responsibility for the content of the manuscript.
 
 ## References
 
