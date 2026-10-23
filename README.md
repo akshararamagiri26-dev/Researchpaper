@@ -40,7 +40,7 @@ python run_experiment.py --data path/to/your_data.csv --seeds 10
 - [x] Keep synthetic results explicitly labeled as a pipeline demonstration, not evidence of organizational effectiveness.
 - [x] Generate vector SVG/PDF figures from the same script used for the experiment.
 - [ ] Inspect the latest GitHub Actions run; confirm the experiment passes, download the generated DOCX/PDF artifact, and manually verify page count and figure/table rendering. The CI conversion is a check, not an official journal template.
-- [ ] Replace author and affiliation placeholders; confirm funding, competing-interest, and AI-use declarations.
+- [x] Author name, affiliation, corresponding-author email, funding, competing-interest, and AI-use declarations finalized from author-confirmed details.
 - [ ] Archive a versioned release with a persistent identifier and finalize the research-data statement.
 - [ ] Before making empirical claims, use documented organizational data, validate knowledge rules with domain experts, and add ablation, sensitivity, stronger baselines, uncertainty analysis, and appropriate paired statistical tests.
 - [ ] Complete a documented literature/novelty review with search databases, dates, search strings, screening criteria, and a comparison matrix. The manuscript now cites three recent adjacent reviews/frameworks but does not claim to be a systematic review or to establish novelty.
