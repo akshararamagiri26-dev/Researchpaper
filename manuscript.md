@@ -18,7 +18,7 @@ Digital transformation changes how organizations create value and coordinate cap
 
 This communication defines a compact knowledge-guided ranking pipeline for digital-transformation initiatives. Each candidate is represented by strategic alignment, data readiness, digital capability, expected benefit, investment cost, and implementation risk. A supervised model predicts an outcome score; a transparent knowledge score encodes provisional domain rules; and a hybrid combines the two. The mixture weight is selected on validation data and evaluated on a held-out test set. Ranking quality is measured with normalized discounted cumulative gain (NDCG), which rewards placing higher-utility candidates near the top of a ranked list [2].
 
-The narrow research question is: **Does validation-tuned integration of explicit knowledge and data-driven prediction improve the ranking of high-outcome transformation initiatives over either component alone?** The current implementation is a reproducible prototype. Since the bundled benchmark is synthetic, the study does not claim real-world organizational impact or causal effects.
+The narrow research question is: **Within a transparent synthetic benchmark, does validation-tuned integration of an explicit knowledge score and a supervised predictor improve held-out ranking quality over either component alone?** The manuscript's contribution is a reproducible evaluation protocol for this design question, not a claim that the hybrid architecture is novel in the broader literature or that it improves real organizational performance. Because the benchmark is synthetic, no causal or organization-level effectiveness claim is supported.
 
 ## 2. Method
 
@@ -30,11 +30,11 @@ Figure 1 presents the proposed pipeline. Organizational data are validated, an e
 
 **Figure 1.** Knowledge-guided decision-support architecture. The diagram is explanatory; it is not an observed result.
 
-The prototype uses a random-forest regressor as the data-driven component [3]. The knowledge score is a transparent weighted function of the six decision attributes, including a benefit–risk interaction. Its weights are illustrative hypotheses and must be elicited, documented, and validated with domain experts before empirical deployment. The hybrid score is \(s_h = \alpha s_k + (1-\alpha)s_m\), where \(s_k\) is the rule score, \(s_m\) is the model prediction, and \(\alpha\) is selected on validation data only.
+The prototype uses a random-forest regressor as the data-driven component [3]. For a candidate initiative, the explicit score is \(s_k = 0.24A + 0.19D + 0.18C + 0.25B - 0.11I - 0.17R + 0.10B(1-R)\), where \(A\) denotes strategic alignment, \(D\) data readiness, \(C\) digital capability, \(B\) expected benefit, \(I\) investment cost, and \(R\) implementation risk. These coefficients are illustrative hypotheses, not expert-validated organizational rules. The hybrid score is \(s_h = \alpha s_k + (1-\alpha)s_m\), where \(s_m\) is the random-forest prediction and \(\alpha\in\{0,0.25,0.50,0.75,1.00\}\) is selected by validation-set NDCG@20% only. The same test partition is then used to evaluate every method.
 
 ### 2.2. Benchmark and evaluation
 
-The default benchmark generates synthetic candidate initiatives from independent uniform feature distributions and adds noise to a known nonlinear outcome function. Ten random seeds are used. For each seed, data are divided into training (60%), validation (20%), and test (20%) partitions. The same split is used for each method. Four ranking methods are compared: (i) random-forest prediction; (ii) the explicit knowledge score; (iii) the validation-tuned hybrid; and (iv) expected benefit divided by investment cost plus a small stabilizing constant.
+The default benchmark draws the six features from independent uniform distributions (with expected benefit and investment cost bounded away from zero) and generates a noisy continuous outcome using \(y = 0.24A + 0.19D + 0.18C + 0.25B - 0.11I - 0.17R + 0.14AD + 0.10B(1-R) - 0.07I^2 + \epsilon\), where \(\epsilon\sim\mathcal{N}(0,0.06^2)\). The knowledge score shares several terms with this synthetic outcome mechanism; this is a deliberate limitation that may favor rule-based methods. Ten random seeds are used. For each seed, data are divided into training (60%), validation (20%), and test (20%) partitions. The same split is used for each method. Four ranking methods are compared: (i) random-forest prediction; (ii) the explicit knowledge score; (iii) the validation-tuned hybrid; and (iv) expected benefit divided by investment cost plus a small stabilizing constant.
 
 NDCG@20% evaluates the quality of the top-ranked fifth of candidates. Top-k regret is the difference between the mean outcome of the oracle top fifth and the mean outcome among the method's selected fifth; lower is better. Spearman's \(\rho\) measures overall rank association. Results are summarized as means and standard deviations across seeds. The experiment does not report significance tests because the current synthetic exercise is a software-pipeline demonstration and not a confirmatory empirical study.
 
@@ -54,7 +54,7 @@ Table 1 describes the data used in the reproducibility run. The benchmark contai
 
 ## 3. Results
 
-Table 2 reports the ten-seed demonstration results. The hybrid's mean NDCG@20% was 0.974 (SD 0.004), compared with 0.971 (SD 0.006) for the knowledge rules and 0.963 (SD 0.009) for data-driven prediction. The hybrid also had the lowest mean top-k regret (0.018), while the benefit-to-cost heuristic performed worst on the simulated outcome mechanism. Figure 2 visualizes mean NDCG with across-seed standard deviations.
+Table 2 reports the ten-seed demonstration results. The hybrid's mean NDCG@20% was 0.974 (SD 0.004), compared with 0.971 (SD 0.006) for the knowledge rules and 0.963 (SD 0.009) for data-driven prediction. The hybrid also had the lowest mean top-k regret (0.018), while the benefit-to-cost heuristic performed worst on the simulated outcome mechanism. Figure 2 visualizes mean NDCG with across-seed standard deviations. The reported standard deviations describe variation across ten synthetic runs; they are not confidence intervals and do not establish statistical significance.
 
 **Table 2. Ranking performance on the synthetic demonstration (mean ± SD across ten seeds).**
 
@@ -83,7 +83,7 @@ This communication specifies a compact, reproducible architecture for combining 
 
 ## Data and code availability
 
-The code and synthetic-data generator are intended to be shared in the associated GitHub repository. The current results can be regenerated using `python run_experiment.py --n 1200 --seeds 10`. The synthetic dataset is generated on demand and is not an observed organizational dataset. Before submission, archive a versioned release and persistent identifier (preferably DOI), and provide the empirical dataset or a statement explaining any access restrictions, consistent with the journal's research-data requirements.
+The code and synthetic-data generator are available in the associated GitHub repository. Regenerate the demonstration with `python run_experiment.py --n 1200 --seeds 10`; the script writes the performance CSV, the two table-data CSVs, and vector SVG/PDF files for the two figures. The synthetic dataset is generated on demand and is not an observed organizational dataset. No empirical organizational dataset is available for this prototype. Before submission, archive a versioned code release and persistent identifier (preferably DOI), and provide any empirical dataset used in a later study or a clear access-restriction statement, consistent with the journal's research-data requirements.
 
 ## Funding
 
