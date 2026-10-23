@@ -119,7 +119,7 @@ def make_figures(metrics: pd.DataFrame) -> None:
                     arrowprops=dict(arrowstyle="->", lw=1.4, color="#444"))
     ax.text(0.5, 0.12, "Governance: data quality • audit trail • human review • outcome monitoring",
             ha="center", fontsize=9)
-    fig.tight_layout(); fig.savefig(OUT/"figure_1_architecture.png", dpi=300, bbox_inches="tight"); plt.close(fig)
+    fig.tight_layout(); fig.savefig(OUT/"figure_1_architecture.svg", bbox_inches="tight"); fig.savefig(OUT/"figure_1_architecture.pdf", bbox_inches="tight"); plt.close(fig)
     means = metrics.groupby("method").agg(ndcg=("ndcg_at_20pct", "mean"),
         sd=("ndcg_at_20pct", "std")).sort_values("ndcg")
     fig, ax = plt.subplots(figsize=(7.5, 4.3))
@@ -127,7 +127,7 @@ def make_figures(metrics: pd.DataFrame) -> None:
     ax.set_xlabel("NDCG@20% (higher is better)")
     ax.set_title("Synthetic benchmark: ranking quality across random seeds")
     ax.grid(axis="x", alpha=0.25); fig.tight_layout()
-    fig.savefig(OUT/"figure_2_benchmark.png", dpi=300, bbox_inches="tight"); plt.close(fig)
+    fig.savefig(OUT/"figure_2_benchmark.svg", bbox_inches="tight"); fig.savefig(OUT/"figure_2_benchmark.pdf", bbox_inches="tight"); plt.close(fig)
 
 
 def main() -> None:
