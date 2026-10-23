@@ -95,7 +95,7 @@ The author declares no known competing financial interests or personal relations
 
 ## Declaration of generative AI and AI-assisted technologies in the manuscript preparation process
 
-During the preparation of this manuscript, the author used ChatGPT to assist with drafting and software prototyping. The author reviewed and edited the material and takes full responsibility for the content of the manuscript.
+During the preparation of this manuscript, the author used ChatGPT to assist with drafting and software prototyping. The author takes responsibility for the final content of the manuscript.
 
 ## References
 
