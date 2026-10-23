@@ -15,6 +15,7 @@ The bundled benchmark is **synthetic**. It validates the experimental pipeline u
 - `results/` — demonstration outputs, table-data CSVs, vector SVG/PDF versions of the two numbered figures, and a separate unnumbered graphical abstract.
 - `.github/workflows/reproducibility-and-manuscript-audit.yml` — reruns the synthetic experiment, checks output schemas/split counts, builds an editable Word file, converts it to PDF, and records page count as a CI artifact.
 - `make_reference_docx.py` — creates a double-spaced Word reference style for the Pandoc build. This is a review-formatting aid, not an official journal template.
+- `NOVELTY_REVIEW.md` — preliminary, explicitly non-systematic scoping review and defensible contribution boundary.
 
 ## Run
 ```bash
