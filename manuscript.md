@@ -83,7 +83,7 @@ This communication specifies a compact, reproducible architecture for combining 
 
 ## Data and code availability
 
-The code and synthetic-data generator are available in the associated GitHub repository. Regenerate the demonstration with `python run_experiment.py --n 1200 --seeds 10`; the script writes the performance CSV, the two table-data CSVs, and vector SVG/PDF files for the two figures. The synthetic dataset is generated on demand and is not an observed organizational dataset. No empirical organizational dataset is available for this prototype. Before submission, archive a versioned code release and persistent identifier (preferably DOI), and provide any empirical dataset used in a later study or a clear access-restriction statement, consistent with the journal's research-data requirements.
+The code and synthetic-data generator are available in the associated GitHub repository [6]. Regenerate the demonstration with `python run_experiment.py --n 1200 --seeds 10`; the script writes the performance CSV, the two table-data CSVs, and vector SVG/PDF files for the two figures. The synthetic dataset is generated on demand and is not an observed organizational dataset. No empirical organizational dataset is available for this prototype. The data statement therefore describes a reproducible generator rather than a deposited empirical dataset. Before submission, archive a versioned code release and persistent identifier (preferably DOI); if a later study uses empirical data that cannot be shared, explain the specific restriction in the data-availability statement, consistent with the journal's research-data requirements.
 
 ## Funding
 
@@ -108,3 +108,5 @@ During the preparation of this work, the author used ChatGPT to assist with draf
 [4] K. Järvelin, J. Kekäläinen, Cumulated gain-based evaluation of IR techniques, *ACM Trans. Inf. Syst.* 20 (4) (2002) 422–446. https://doi.org/10.1145/582415.582418.
 
 [5] L. Breiman, Random forests, *Mach. Learn.* 45 (1) (2001) 5–32. https://doi.org/10.1023/A:1010933404324.
+
+[6] akshararamagiri26-dev, *Researchpaper: Reproducible prototype for knowledge-guided AI decision support* [software], GitHub repository, n.d. https://github.com/akshararamagiri26-dev/Researchpaper (accessed 23 October 2026).
