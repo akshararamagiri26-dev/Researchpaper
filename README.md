@@ -40,4 +40,4 @@ python run_experiment.py --data path/to/your_data.csv --seeds 10
 - [ ] Replace author and affiliation placeholders; confirm funding, competing-interest, and AI-use declarations.
 - [ ] Archive a versioned release with a persistent identifier and finalize the research-data statement.
 - [ ] Before making empirical claims, use documented organizational data, validate knowledge rules with domain experts, and add ablation, sensitivity, stronger baselines, uncertainty analysis, and appropriate paired statistical tests.
-- [ ] Complete a current literature/novelty review; the current three-reference list is not sufficient to establish novelty.
+- [ ] Complete a current literature/novelty review; the six references in the draft are a starting point and do not yet establish novelty or comprehensive coverage.
