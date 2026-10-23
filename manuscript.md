@@ -1,10 +1,10 @@
 # A Knowledge-Guided AI Decision System for Data-Driven Digital Transformation and Organizational Performance Optimization
 
-**Article type:** Short communication (working draft; empirical validation required)
+**Article type:** Short communication
 
 **Author:** Akshara Ramagiri  
 **Affiliation:** Midwest University  
-**Corresponding author:** Akshara Ramagiri (akshara.ramagiri@midwest.edu)
+**Corresponding author:** Akshara Ramagiri; email: akshara.ramagiri@midwest.edu
 
 ## Abstract
 
@@ -14,7 +14,7 @@ Digital transformation requires organizations to prioritize initiatives under co
 
 ## 1. Introduction
 
-Digital transformation changes how organizations create value and coordinate capabilities, but its outcomes depend on strategic responses, organizational barriers, and implementation choices rather than technology adoption alone [1]. Managers therefore need decision support that prioritizes initiatives using multiple, potentially conflicting criteria. Research on informed machine learning describes multiple ways to incorporate prior knowledge into learning systems [2], while field evidence cautions that improved predictions do not automatically translate into better organizational decisions and that decision authority matters [3]. Recent reviews make the novelty problem especially important. A systematic review of 262 articles on prescriptive analytics systems synthesizes system components and human–system decision arrangements [7], while a literature analysis of 2,093 journal papers develops a framework for intelligent decision-support systems [8]. A separate review of machine learning for production-management decisions examines hybrid-intelligence approaches in a specific operational domain [9]. This adjacent literature shows that combining analytics with decision support is an established research direction; therefore, a weighted blend of a rule score and a random forest is not, by itself, a defensible novelty claim. The narrower unresolved question examined here is methodological: how to make validation-based hybrid ranking and held-out top-k evaluation explicit and reproducible in a digital-transformation initiative prioritization example. This manuscript does not claim that the literature has been systematically exhausted or that the proposed combination is the first of its kind.
+Digital transformation changes how organizations create value and coordinate capabilities, but its outcomes depend on strategic responses, organizational barriers, and implementation choices rather than technology adoption alone [1]. Managers therefore need decision support that prioritizes initiatives using multiple, potentially conflicting criteria. Research on informed machine learning describes multiple ways to incorporate prior knowledge into learning systems [2], while field evidence cautions that improved predictions do not automatically translate into better organizational decisions and that decision authority matters [3]. Recent reviews make the novelty problem especially important. A systematic review of 262 articles on prescriptive analytics systems synthesizes system components and human–system decision arrangements [6], while a literature analysis of 2,093 journal papers develops a framework for intelligent decision-support systems [7]. A separate review of machine learning for production-management decisions examines hybrid-intelligence approaches in a specific operational domain [8]. This adjacent literature shows that combining analytics with decision support is an established research direction; therefore, a weighted blend of a rule score and a random forest is not, by itself, a defensible novelty claim. The narrower unresolved question examined here is methodological: how to make validation-based hybrid ranking and held-out top-k evaluation explicit and reproducible in a digital-transformation initiative prioritization example. This manuscript does not claim that the literature has been systematically exhausted or that the proposed combination is the first of its kind.
 
 This communication defines a compact knowledge-guided ranking pipeline for digital-transformation initiatives. Each candidate is represented by strategic alignment, data readiness, digital capability, expected benefit, investment cost, and implementation risk. A supervised model predicts an outcome score; a transparent knowledge score encodes provisional domain rules; and a hybrid combines the two. The mixture weight is selected on validation data and evaluated on a held-out test set. Ranking quality is measured with normalized discounted cumulative gain (NDCG), which rewards placing higher-utility candidates near the top of a ranked list [4].
 
@@ -75,7 +75,7 @@ The implementation demonstrates how explicit knowledge and supervised prediction
 
 A credible empirical follow-up should (1) use a documented dataset containing actual transformation initiatives and subsequent outcomes; (2) define outcomes and observation windows before model fitting; (3) elicit rules from qualified domain experts and record provenance and disagreements; (4) compare against strong, tuned baselines and ablate each knowledge component; (5) test robustness to missing data, distribution shift, weight changes, and alternative top-k cutoffs; and (6) report uncertainty and suitable paired statistical tests. If the available data are observational, the analysis should describe associations and ranking utility rather than causal effects of digital transformation. Organizational performance is multidimensional; a single outcome score may obscure differences among financial, operational, employee, and customer outcomes.
 
-The current manuscript therefore offers a transparent implementation and evaluation scaffold, not a validated empirical contribution. In light of recent reviews of prescriptive analytics and intelligent decision-support systems [7,8], the present design should be positioned as a reproducible, domain-specific benchmark protocol rather than as a novel hybrid-learning architecture. A defensible claim of novelty would require a documented search strategy, explicit inclusion/exclusion criteria, a comparison matrix against closely related methods, and a technically meaningful distinction that survives that comparison. The current exploratory web-based scan is useful for identifying adjacent work but is not a systematic literature review.
+The current manuscript therefore offers a transparent implementation and evaluation scaffold, not a validated empirical contribution. In light of recent reviews of prescriptive analytics and intelligent decision-support systems [6,7], the present design should be positioned as a reproducible, domain-specific benchmark protocol rather than as a novel hybrid-learning architecture. A defensible claim of novelty would require a documented search strategy, explicit inclusion/exclusion criteria, a comparison matrix against closely related methods, and a technically meaningful distinction that survives that comparison. The current exploratory web-based scan is useful for identifying adjacent work but is not a systematic literature review.
 
 ## 5. Conclusion
 
@@ -83,7 +83,7 @@ This communication specifies a compact, reproducible architecture for combining 
 
 ## Data and code availability
 
-The source code and synthetic-data generator are available at https://github.com/akshararamagiri26-dev/Researchpaper. The demonstration can be regenerated with `python run_experiment.py --n 1200 --seeds 10`; the script writes the performance CSV, table-data CSVs, and vector SVG/PDF figures. The data are generated on demand and do not represent observed organizations or people. No empirical organizational dataset was collected for this prototype. The repository URL is a mutable source-code location, not a persistent dataset identifier. A versioned archival release and DOI have not yet been created; this statement must be updated with the archive DOI before submission if required by the journal's data policy.
+The source code and synthetic-data generator are available at the Researchpaper repository [9] (https://github.com/akshararamagiri26-dev/Researchpaper). The demonstration can be regenerated with `python run_experiment.py --n 1200 --seeds 10`; the script writes the performance CSV, table-data CSVs, and vector SVG/PDF figures. The data are generated on demand and do not represent observed organizations or people. No empirical organizational dataset was collected for this prototype. The repository URL is a mutable source-code location, not a persistent dataset identifier. A versioned archival release and DOI have not yet been created; this statement must be updated with the archive DOI before submission if required by the journal's data policy.
 
 ## Funding
 
@@ -109,10 +109,10 @@ During the preparation of this manuscript, the author used ChatGPT to assist wit
 
 [5] L. Breiman, Random forests, *Mach. Learn.* 45 (1) (2001) 5–32. https://doi.org/10.1023/A:1010933404324.
 
-[6] akshararamagiri26-dev, *Researchpaper: Reproducible prototype for knowledge-guided AI decision support* [software], GitHub repository, n.d. https://github.com/akshararamagiri26-dev/Researchpaper (accessed 23 October 2026).
+[6] C. Wissuchek, P. Zschech, Prescriptive analytics systems revised: a systematic literature review from an information systems perspective, *Inf. Syst. E-Bus. Manag.* 23 (2025) 279–353. https://doi.org/10.1007/s10257-024-00688-w.
 
-[7] C. Wissuchek, P. Zschech, Prescriptive analytics systems revised: a systematic literature review from an information systems perspective, *Inf. Syst. E-Bus. Manag.* 23 (2025) 279–353. https://doi.org/10.1007/s10257-024-00688-w.
+[7] G. Onwujekwe, H.R. Weistroffer, Intelligent decision support systems: an analysis of the literature and a framework for development, *Inf. Syst. Front.* 27 (5) (2025) 2027–2058. https://doi.org/10.1007/s10796-024-10571-1.
 
-[8] G. Onwujekwe, H.R. Weistroffer, Intelligent decision support systems: an analysis of the literature and a framework for development, *Inf. Syst. Front.* 27 (5) (2025) 2027–2058. https://doi.org/10.1007/s10796-024-10571-1.
+[8] C.R. Sauer, P. Burggräf, F. Steinberg, A systematic review of machine learning for hybrid intelligence in production management, *Decis. Anal. J.* 15 (2025) 100574. https://doi.org/10.1016/j.dajour.2025.100574.
 
-[9] C.R. Sauer, P. Burggräf, F. Steinberg, A systematic review of machine learning for hybrid intelligence in production management, *Decis. Anal. J.* 15 (2025) 100574. https://doi.org/10.1016/j.dajour.2025.100574.
+[9] akshararamagiri26-dev, *Researchpaper: Reproducible prototype for knowledge-guided AI decision support* [software], GitHub repository, n.d. https://github.com/akshararamagiri26-dev/Researchpaper (accessed 23 October 2026).
