@@ -1,5 +1,5 @@
 Highlights
-- Combines explicit knowledge rules with predictive ranking for transformation initiatives
+- Combines explicit knowledge rules with predictive ranking for transformation projects
 - Compares four ranking strategies using held-out synthetic test data
 - Reports top-k ranking quality, regret, and rank correlation across random seeds
 - Synthetic findings demonstrate the pipeline, not real-world organizational impact
