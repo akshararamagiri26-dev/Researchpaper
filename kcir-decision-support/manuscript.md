@@ -1,3 +1,3 @@
 # Manuscript not yet uploaded
 
-The archive contains `manuscript.md`, but this repository copy is a placeholder until the complete uploaded archive can be committed safely.
+This file is a placeholder. The original archive contains a manuscript, but the full archive has not yet been faithfully committed.
