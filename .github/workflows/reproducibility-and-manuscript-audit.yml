@@ -1,0 +1,98 @@
+name: Reproducibility and manuscript audit
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install experiment dependencies
+        run: python -m pip install --upgrade pip && python -m pip install -r requirements.txt
+
+      - name: Re-run the documented synthetic experiment
+        run: python run_experiment.py --n 1200 --seeds 10
+
+      - name: Check generated outputs and reported methods
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+          out = Path("results")
+          required = [
+              "run_metrics.csv", "table_1_data_profile.csv", "table_2_performance.csv",
+              "figure_1_architecture.svg", "figure_1_architecture.pdf",
+              "figure_2_benchmark.svg", "figure_2_benchmark.pdf",
+          ]
+          missing = [name for name in required if not (out / name).is_file()]
+          if missing:
+              raise SystemExit(f"Missing generated outputs: {missing}")
+          profile = pd.read_csv(out / "table_1_data_profile.csv").iloc[0]
+          assert int(profile["n_total"]) == 1200, profile.to_dict()
+          assert int(profile["n_train_per_seed"]) == 720, profile.to_dict()
+          assert int(profile["n_validation_per_seed"]) == 240, profile.to_dict()
+          assert int(profile["n_test_per_seed"]) == 240, profile.to_dict()
+          assert int(profile["seeds"]) == 10, profile.to_dict()
+          metrics = pd.read_csv(out / "run_metrics.csv")
+          assert len(metrics) == 40, f"Expected 4 methods x 10 seeds, got {len(metrics)}"
+          assert metrics["method"].nunique() == 4
+          assert metrics["seed"].nunique() == 10
+          assert metrics[["ndcg_at_20pct", "top_k_regret", "spearman_rho"]].notna().all().all()
+          print("Experiment output checks passed.")
+          PY
+
+      - name: Install document conversion tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc libreoffice-writer poppler-utils
+
+      - name: Build editable Word manuscript and PDF for pagination audit
+        run: |
+          pandoc manuscript.md --from=markdown+tex_math_dollars --to=docx --standalone \
+            --output=manuscript_submission.docx \
+            --metadata title="A Knowledge-Guided AI Decision System for Data-Driven Digital Transformation and Organizational Performance Optimization"
+          mkdir -p /tmp/lo-profile
+          libreoffice -env:UserInstallation=file:///tmp/lo-profile --headless --convert-to pdf --outdir . manuscript_submission.docx
+          test -s manuscript_submission.docx
+          test -s manuscript_submission.pdf
+          pdfinfo manuscript_submission.pdf | tee manuscript_pdfinfo.txt
+          pages=$(pdfinfo manuscript_submission.pdf | awk '/^Pages:/ {print $2}')
+          echo "Rendered PDF page count: $pages"
+          if [ "$pages" -gt 10 ]; then
+            echo "::warning::Rendered manuscript exceeds the 10-page Short Communication target ($pages pages). Adjust formatting and inspect the journal's double-spaced page-count rule."
+          else
+            echo "Rendered manuscript is within 10 pages in this conversion. Confirm double-spacing and figure/table layout against the journal guide."
+          fi
+
+      - name: Upload reproducibility and editable-manuscript artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: manuscript-audit-artifacts
+          path: |
+            manuscript_submission.docx
+            manuscript_submission.pdf
+            manuscript_pdfinfo.txt
+            results/run_metrics.csv
+            results/table_1_data_profile.csv
+            results/table_2_performance.csv
+            results/figure_1_architecture.svg
+            results/figure_1_architecture.pdf
+            results/figure_2_benchmark.svg
+            results/figure_2_benchmark.pdf
+          if-no-files-found: error
+          retention-days: 30
