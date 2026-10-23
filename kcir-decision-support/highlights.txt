@@ -1,3 +1,0 @@
-Contribution: a knowledge-guided decision-support framework for ranking digital-transformation initiatives.
-Evaluation: synthetic benchmark comparing approaches with ranking quality, regret, and constraint-violation metrics.
-Scope: synthetic results validate the experimental pipeline only and are not evidence of real-world organizational effectiveness.
