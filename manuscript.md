@@ -14,9 +14,9 @@ Digital transformation requires organizations to prioritize initiatives under co
 
 ## 1. Introduction
 
-Digital transformation changes how organizations create value and coordinate capabilities, but its outcomes depend on strategic responses, organizational barriers, and implementation choices rather than technology adoption alone [1]. Managers therefore need decision support that prioritizes initiatives using multiple, potentially conflicting criteria. A purely predictive model can learn associations from historical examples, while an explicit rule system can encode domain constraints but may not capture interactions in observed data. Combining the two is a plausible design hypothesis, not an established performance advantage.
+Digital transformation changes how organizations create value and coordinate capabilities, but its outcomes depend on strategic responses, organizational barriers, and implementation choices rather than technology adoption alone [1]. Managers therefore need decision support that prioritizes initiatives using multiple, potentially conflicting criteria. Research on informed machine learning describes multiple ways to incorporate prior knowledge into learning systems [2], while field evidence cautions that improved predictions do not automatically translate into better organizational decisions and that decision authority matters [3]. These studies motivate careful evaluation of knowledge-guided ranking, but do not establish that a simple weighted hybrid is novel or effective for digital-transformation portfolios.
 
-This communication defines a compact knowledge-guided ranking pipeline for digital-transformation initiatives. Each candidate is represented by strategic alignment, data readiness, digital capability, expected benefit, investment cost, and implementation risk. A supervised model predicts an outcome score; a transparent knowledge score encodes provisional domain rules; and a hybrid combines the two. The mixture weight is selected on validation data and evaluated on a held-out test set. Ranking quality is measured with normalized discounted cumulative gain (NDCG), which rewards placing higher-utility candidates near the top of a ranked list [2].
+This communication defines a compact knowledge-guided ranking pipeline for digital-transformation initiatives. Each candidate is represented by strategic alignment, data readiness, digital capability, expected benefit, investment cost, and implementation risk. A supervised model predicts an outcome score; a transparent knowledge score encodes provisional domain rules; and a hybrid combines the two. The mixture weight is selected on validation data and evaluated on a held-out test set. Ranking quality is measured with normalized discounted cumulative gain (NDCG), which rewards placing higher-utility candidates near the top of a ranked list [4].
 
 The narrow research question is: **Within a transparent synthetic benchmark, does validation-tuned integration of an explicit knowledge score and a supervised predictor improve held-out ranking quality over either component alone?** The manuscript's contribution is a reproducible evaluation protocol for this design question, not a claim that the hybrid architecture is novel in the broader literature or that it improves real organizational performance. Because the benchmark is synthetic, no causal or organization-level effectiveness claim is supported.
 
@@ -30,7 +30,7 @@ Figure 1 presents the proposed pipeline. Organizational data are validated, an e
 
 **Figure 1.** Knowledge-guided decision-support architecture. The diagram is explanatory; it is not an observed result.
 
-The prototype uses a random-forest regressor as the data-driven component [3]. For a candidate initiative, the explicit score is \(s_k = 0.24A + 0.19D + 0.18C + 0.25B - 0.11I - 0.17R + 0.10B(1-R)\), where \(A\) denotes strategic alignment, \(D\) data readiness, \(C\) digital capability, \(B\) expected benefit, \(I\) investment cost, and \(R\) implementation risk. These coefficients are illustrative hypotheses, not expert-validated organizational rules. The hybrid score is \(s_h = \alpha s_k + (1-\alpha)s_m\), where \(s_m\) is the random-forest prediction and \(\alpha\in\{0,0.25,0.50,0.75,1.00\}\) is selected by validation-set NDCG@20% only. The same test partition is then used to evaluate every method.
+The prototype uses a random-forest regressor as the data-driven component [5]. For a candidate initiative, the explicit score is \(s_k = 0.24A + 0.19D + 0.18C + 0.25B - 0.11I - 0.17R + 0.10B(1-R)\), where \(A\) denotes strategic alignment, \(D\) data readiness, \(C\) digital capability, \(B\) expected benefit, \(I\) investment cost, and \(R\) implementation risk. These coefficients are illustrative hypotheses, not expert-validated organizational rules. The hybrid score is \(s_h = \alpha s_k + (1-\alpha)s_m\), where \(s_m\) is the random-forest prediction and \(\alpha\in\{0,0.25,0.50,0.75,1.00\}\) is selected by validation-set NDCG@20% only. The same test partition is then used to evaluate every method.
 
 ### 2.2. Benchmark and evaluation
 
@@ -101,6 +101,10 @@ During the preparation of this work, the author used ChatGPT to assist with draf
 
 [1] G. Vial, Understanding digital transformation: A review and a research agenda, *J. Strateg. Inf. Syst.* 28 (2) (2019) 118–144. https://doi.org/10.1016/j.jsis.2019.01.003.
 
-[2] K. Järvelin, J. Kekäläinen, Cumulated gain-based evaluation of IR techniques, *ACM Trans. Inf. Syst.* 20 (4) (2002) 422–446. https://doi.org/10.1145/582415.582418.
+[2] J. Willard, X. Jia, S. Xu, M. Steinbach, V. Kumar, Integrating scientific knowledge with machine learning for engineering and environmental systems, *ACM Comput. Surv.* 55 (4) (2023), Article 66. https://doi.org/10.1145/3514228.
 
-[3] L. Breiman, Random forests, *Mach. Learn.* 45 (1) (2001) 5–32. https://doi.org/10.1023/A:1010933404324.
+[3] H. Kim, E.L. Glaeser, A. Hillis, S.D. Kominers, M. Luca, Decision authority and the returns to algorithms, *Strateg. Manag. J.* 45 (4) (2024) 619–648. https://doi.org/10.1002/smj.3569.
+
+[4] K. Järvelin, J. Kekäläinen, Cumulated gain-based evaluation of IR techniques, *ACM Trans. Inf. Syst.* 20 (4) (2002) 422–446. https://doi.org/10.1145/582415.582418.
+
+[5] L. Breiman, Random forests, *Mach. Learn.* 45 (1) (2001) 5–32. https://doi.org/10.1023/A:1010933404324.
