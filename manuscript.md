@@ -115,4 +115,4 @@ During the preparation of this work, the author used ChatGPT to assist with draf
 
 [8] G. Onwujekwe, H.R. Weistroffer, Intelligent decision support systems: an analysis of the literature and a framework for development, *Inf. Syst. Front.* 27 (5) (2025) 2027–2058. https://doi.org/10.1007/s10796-024-10571-1.
 
-[9] A systematic review of machine learning for hybrid intelligence in production management, *Decision Analytics Journal* 15 (2025) 100574. https://doi.org/10.1016/j.dajour.2025.100574.
+[9] C.R. Sauer, P. Burggräf, F. Steinberg, A systematic review of machine learning for hybrid intelligence in production management, *Decis. Anal. J.* 15 (2025) 100574. https://doi.org/10.1016/j.dajour.2025.100574.
