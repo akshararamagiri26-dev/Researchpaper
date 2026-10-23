@@ -60,10 +60,15 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y pandoc libreoffice-writer poppler-utils
+          python -m pip install python-docx
+
+      - name: Create double-spaced Word reference template
+        run: python make_reference_docx.py
 
       - name: Build editable Word manuscript and PDF for pagination audit
         run: |
           pandoc manuscript.md --from=markdown+tex_math_dollars --to=docx --standalone \
+            --reference-doc=manuscript_reference.docx \
             --output=manuscript_submission.docx \
             --metadata title="A Knowledge-Guided AI Decision System for Data-Driven Digital Transformation and Organizational Performance Optimization"
           mkdir -p /tmp/lo-profile
