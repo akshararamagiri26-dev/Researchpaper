@@ -1,2 +1,4 @@
-# KCIR decision-support implementation
-# Original file is included in the uploaded archive; binary/text-safe upload still pending.
+"""Placeholder notice.
+
+The original `kbs_dss.py` was present in the supplied ZIP. This placeholder is temporary; full archive upload is required for a faithful repository copy.
+"""
