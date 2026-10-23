@@ -26,7 +26,7 @@ The narrow research question is: **Does validation-tuned integration of explicit
 
 Figure 1 presents the proposed pipeline. Organizational data are validated, an explicit knowledge layer represents provisional rules and constraints, and a predictive model is trained on a training partition. The validation partition selects the hybrid knowledge weight from {0, 0.25, 0.50, 0.75, 1.00} by NDCG@20%. The test partition is used only for final comparison. Human review and outcome monitoring remain part of the proposed decision process; the system is not intended to automate investment approval.
 
-![Figure 1. Knowledge-guided decision-support architecture.](results/figure_1_architecture.png)
+![Figure 1. Knowledge-guided decision-support architecture.](results/figure_1_architecture.svg)
 
 **Figure 1.** Knowledge-guided decision-support architecture. The diagram is explanatory; it is not an observed result.
 
@@ -65,7 +65,7 @@ Table 2 reports the ten-seed demonstration results. The hybrid's mean NDCG@20% w
 | Knowledge rules | 0.971 ± 0.006 | 0.020 ± 0.006 | 0.913 ± 0.012 |
 | Knowledge-guided hybrid | 0.974 ± 0.004 | 0.018 ± 0.005 | 0.917 ± 0.014 |
 
-![Figure 2. Ranking quality across synthetic benchmark methods.](results/figure_2_benchmark.png)
+![Figure 2. Ranking quality across synthetic benchmark methods.](results/figure_2_benchmark.svg)
 
 **Figure 2.** Mean NDCG@20% across ten synthetic random seeds; error bars represent one standard deviation. These results describe the synthetic benchmark only.
 
