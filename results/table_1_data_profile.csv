@@ -1,0 +1,2 @@
+n_total,n_train_per_seed,n_validation_per_seed,n_test_per_seed,seeds,data_source
+1200,720,240,240,10,synthetic demonstration
